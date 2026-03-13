@@ -1,0 +1,6 @@
+{
+    "name": "github-card-api",
+    "version": "1.0.0",
+    "description": "SVG project card generator for godten-cmd's GitHub README",
+    "main": "api/card.js"
+  }

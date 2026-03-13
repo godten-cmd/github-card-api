@@ -1,0 +1,17 @@
+{
+    "version": 2,
+    "functions": {
+      "api/card.js": {
+        "memory": 128,
+        "maxDuration": 5
+      }
+    },
+    "headers": [
+      {
+        "source": "/api/(.*)",
+        "headers": [
+          { "key": "Access-Control-Allow-Origin", "value": "*" }
+        ]
+      }
+    ]
+  }
