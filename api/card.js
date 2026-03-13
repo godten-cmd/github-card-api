@@ -24,8 +24,8 @@ const projects = {
     iveread: {
       name: "IVEread",
       tag: null,
-      desc: "독서 기록 · 공유 커뮤니티 앱.\nBE 담당",
-      stack: ["TypeScript", "Node.js"],
+      desc: "독서 기록 · 공유 커뮤니티 앱.\nFE 담당",
+      stack: ["TypeScript", "React"],
     },
     zerosumgame: {
       name: "ZeroSumGame",
