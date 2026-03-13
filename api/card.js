@@ -80,52 +80,51 @@ const projects = {
       const w = s.length * 7.2 + 18;
       if (x + w > maxWidth) break;
       const badge = `<g transform="translate(${x}, 0)">
-        <rect x="0" y="0" width="${w}" height="20" rx="4" fill="#F1EFE8"/>
-        <text x="${w / 2}" y="13.5" text-anchor="middle" font-family="'Segoe UI',sans-serif" font-size="13" fill="#5F5E5A">${s}</text>
+        <rect x="0" y="0" width="${w}" height="22" rx="4" fill="#F1EFE8"/>
+        <text x="${w / 2}" y="15" text-anchor="middle" font-family="'Segoe UI',sans-serif" font-size="12" fill="#5F5E5A">${s}</text>
       </g>`;
       badges.push(badge);
       x += w + 6;
     }
     return badges.join("");
   }
-  
+   
   module.exports = (req, res) => {
     const id = (req.query.id || "").toLowerCase();
     const theme = req.query.theme || "light";
-  
+   
     const p = projects[id];
     if (!p) {
       res.status(404).send("Project not found. Available: " + Object.keys(projects).join(", "));
       return;
     }
-  
+   
     const W = 460;
-    const H = 200;
+    const H = 210;
     const PAD = 22;
     const bg = theme === "dark" ? "#161b22" : "#ffffff";
     const border = theme === "dark" ? "#30363d" : "#e5e7eb";
     const textPrimary = theme === "dark" ? "#e6edf3" : "#1a1a1a";
     const textSecondary = theme === "dark" ? "#8b949e" : "#6b7280";
-  
+   
     const lines = p.desc.split("\n");
     const stackSvg = buildStackRow(p.stack, W - PAD * 2);
-  
-    const nameWidth = p.name.length * 8.5;
+   
     const tagSvg = p.tag
-      ? `<g transform="translate(${PAD + nameWidth + 10}, 23)">
-          <rect x="0" y="0" width="${p.tag.length * 6.8 + 14}" height="17" rx="3" fill="${p.tagBg}"/>
-          <text x="${(p.tag.length * 6.8 + 14) / 2}" y="11.5" text-anchor="middle" font-family="'Segoe UI',sans-serif" font-size="10" font-weight="600" fill="${p.tagColor}">${p.tag}</text>
+      ? `<g transform="translate(${PAD}, 46)">
+          <rect x="0" y="0" width="${p.tag.length * 7 + 16}" height="20" rx="3" fill="${p.tagBg}"/>
+          <text x="${(p.tag.length * 7 + 16) / 2}" y="14" text-anchor="middle" font-family="'Segoe UI',sans-serif" font-size="11" font-weight="600" fill="${p.tagColor}">${p.tag}</text>
         </g>`
       : "";
-  
+   
     const svg = `<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg">
     <rect width="${W}" height="${H}" rx="10" fill="${bg}" stroke="${border}" stroke-width="1"/>
-    <text x="${PAD}" y="36" font-family="'Segoe UI',sans-serif" font-size="22" font-weight="700" fill="${textPrimary}">${p.name}</text>
+    <text x="${PAD}" y="36" font-family="'Segoe UI',sans-serif" font-size="18" font-weight="700" fill="${textPrimary}">${p.name}</text>
     ${tagSvg}
-    ${lines.map((l, i) => `<text x="${PAD}" y="${62 + i * 19}" font-family="'Segoe UI',sans-serif" font-size="15" fill="${textSecondary}">${l}</text>`).join("\n  ")}
-    <g transform="translate(${PAD}, ${H - 34})">${stackSvg}</g>
+    ${lines.map((l, i) => `<text x="${PAD}" y="${(p.tag ? 84 : 70) + i * 22}" font-family="'Segoe UI',sans-serif" font-size="13" fill="${textSecondary}">${l}</text>`).join("\n  ")}
+    <g transform="translate(${PAD}, ${H - 38})">${stackSvg}</g>
   </svg>`;
-  
+   
     res.setHeader("Content-Type", "image/svg+xml");
     res.setHeader("Cache-Control", "public, max-age=3600");
     res.send(svg);
