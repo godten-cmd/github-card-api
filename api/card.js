@@ -19,28 +19,34 @@ const projects = {
     },
     bodyclick: {
       name: "BodyClick",
-      tag: null,
+      tag: "카이스트 몰입캠프",
+      tagColor: "#A16207",
+      tagBg: "#FEF3C7",
       desc: "Three.js 기반 3D 헬스케어 플랫폼.\n인체 모델 인터랙션 UX 설계",
       stack: ["React", "Three.js", "Zustand"],
       url: "https://github.com/madcamp-BodyClick",
     },
     iveread: {
       name: "IVEread",
-      tag: null,
+      tag: "카이스트 몰입캠프",
+      tagColor: "#A16207",
+      tagBg: "#FEF3C7",
       desc: "독서 기록 · 공유 커뮤니티 앱.\nFE 담당",
       stack: ["TypeScript", "React"],
       url: "https://github.com/IVEread/",
     },
     zerosumgame: {
       name: "ZeroSumGame",
-      tag: null,
+      tag: "카이스트 몰입캠프",
+      tagColor: "#A16207",
+      tagBg: "#FEF3C7",
       desc: "금융 · 경제 개념을\n게임으로 학습하는 프로젝트",
       stack: ["TypeScript"],
       url: "https://github.com/ZeroSum-Game",
     },
     goemotion: {
       name: "GoEmotion",
-      tag: "ML",
+      tag: "교내 연구실 프로젝트",
       tagColor: "#854F0B",
       tagBg: "#FAEEDA",
       desc: "텍스트 기반 감정 분석 모델.\nNLP 기반 다중 감정 분류",
@@ -58,7 +64,7 @@ const projects = {
     },
     kbo: {
       name: "STATIZ KBO 2026",
-      tag: "대회",
+      tag: "스탯티즈 대회",
       tagColor: "#993C1D",
       tagBg: "#FAECE7",
       desc: "스탯티즈 KBO 2026 승부예측 대회.\n머신러닝 기반 경기 결과 이진 분류",
@@ -75,7 +81,7 @@ const projects = {
       if (x + w > maxWidth) break;
       const badge = `<g transform="translate(${x}, 0)">
         <rect x="0" y="0" width="${w}" height="20" rx="4" fill="#F1EFE8"/>
-        <text x="${w / 2}" y="13.5" text-anchor="middle" font-family="'Segoe UI',sans-serif" font-size="12" fill="#5F5E5A">${s}</text>
+        <text x="${w / 2}" y="13.5" text-anchor="middle" font-family="'Segoe UI',sans-serif" font-size="13" fill="#5F5E5A">${s}</text>
       </g>`;
       badges.push(badge);
       x += w + 6;
@@ -94,7 +100,7 @@ const projects = {
     }
   
     const W = 460;
-    const H = 185;
+    const H = 200;
     const PAD = 22;
     const bg = theme === "dark" ? "#161b22" : "#ffffff";
     const border = theme === "dark" ? "#30363d" : "#e5e7eb";
@@ -114,9 +120,9 @@ const projects = {
   
     const svg = `<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg">
     <rect width="${W}" height="${H}" rx="10" fill="${bg}" stroke="${border}" stroke-width="1"/>
-    <text x="${PAD}" y="36" font-family="'Segoe UI',sans-serif" font-size="18" font-weight="700" fill="${textPrimary}">${p.name}</text>
+    <text x="${PAD}" y="36" font-family="'Segoe UI',sans-serif" font-size="22" font-weight="700" fill="${textPrimary}">${p.name}</text>
     ${tagSvg}
-    ${lines.map((l, i) => `<text x="${PAD}" y="${62 + i * 19}" font-family="'Segoe UI',sans-serif" font-size="13" fill="${textSecondary}">${l}</text>`).join("\n  ")}
+    ${lines.map((l, i) => `<text x="${PAD}" y="${62 + i * 19}" font-family="'Segoe UI',sans-serif" font-size="15" fill="${textSecondary}">${l}</text>`).join("\n  ")}
     <g transform="translate(${PAD}, ${H - 34})">${stackSvg}</g>
   </svg>`;
   
